@@ -14,6 +14,14 @@
   <dd><strong>Gênero:</strong> <%=@movie.genre.name%></dd>
   <dd><strong>Diretor:</strong> <%=@movie.director.name%></dd>
   <dd><strong>Sinópse:</strong> <%=@movie.synopsis%></dd>
+  <dd>
+    <strong>Filme já lançado ?</strong> 
+    <% if @movie.released == 'release' %>
+      Sim
+    <%else%>
+      Não
+    <% end %>
+  </dd>
 </dl>
 
 <%= link_to 'Editar', edit_movie_path(@movie.id) %>

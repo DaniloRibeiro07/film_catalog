@@ -19,6 +19,10 @@
   <br>
   <%= f.label 'Diretor Responsável'%>
   <%= f.collection_select :director_id, Director.all, :id, :name %>
+  <br>
+  <%= f.label 'Já lançado ?'%>
+  <%= f.check_box :released, {checked: movie.released_for_database}%>
+  <br>
   <br><br>
   <%= f.submit 'Salvar'%>
 <%end%>

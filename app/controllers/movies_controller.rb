@@ -10,7 +10,8 @@ class MoviesController < ApplicationController
                        country_of_origin: params[:movie][:country_of_origin],
                        duration: params[:movie][:duration],
                        director_id: params[:movie][:director_id],
-                       genre_id: params[:movie][:genre_id])
+                       genre_id: params[:movie][:genre_id],
+                       released: params[:movie][:released])
     if @movie.save
       flash[:notice] = 'Filme Cadastrado com sucesso'
       return redirect_to(movie_path(@movie.id))
@@ -30,7 +31,8 @@ class MoviesController < ApplicationController
                      country_of_origin: params[:movie][:country_of_origin],
                      duration: params[:movie][:duration],
                      director_id: params[:movie][:director_id],
-                     genre_id: params[:movie][:genre_id])
+                     genre_id: params[:movie][:genre_id],
+                     released: params[:movie][:released] == '1')
       flash[:notice] = 'Filme Editado com sucesso'
       return redirect_to(movie_path(params[:id]))
     end
@@ -40,8 +42,8 @@ class MoviesController < ApplicationController
   def show
     @movie = Movie.find(params[:id])
   end
-  
+
   def index
-    render "_list"
+    render '_list'
   end
 end

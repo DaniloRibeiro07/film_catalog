@@ -1,6 +1,6 @@
 class Movie < ApplicationRecord
-  enum status: { draft: 0, published: 2 }
-  enum released: { no_release: 0, release: 2 }
+  enum status: { draft: false, published: true }
+  enum released: { no_release: false, release: true }
   belongs_to :director
   belongs_to :genre
 end

@@ -1,5 +1,6 @@
 <h2>Filmes Cadastrados</h2>
 <%= link_to 'Cadastra filme', new_movie_path %>
+
   <dl>
     <dt>Filmes não Lançados</dt>
       <%Movie.no_release.all.each do |movie|%>
