@@ -25,6 +25,18 @@
   <br>
   <%= f.label 'Publicar ?'%>
   <%= f.check_box :status, {checked: movie.status_for_database}%>
+  <br>
+  <%= f.label 'Imagem:'%>
+  <% if @movie.avatar.attached? %>
+    <%= image_tag @movie.avatar.variant(:thumb) %>
+    <%= link_to "Apagar Foto", remove_photo_movie_path(@movie.id)%>
+  <% end %>
+  <br>
+  <br>
+  <%= f.file_field :avatar %>
   <br><br>
   <%= f.submit 'Salvar'%>
 <%end%>
+
+
+

@@ -14,6 +14,9 @@ class MoviesController < ApplicationController
                        released: params[:movie][:released] == '1',
                        status: params[:movie][:status] == '1')
     if @movie.save
+      if params[:movie][:avatar]
+        @movie.avatar.attach(params[:movie][:avatar])
+      end
       flash[:notice] = 'Filme Cadastrado com sucesso'
       return redirect_to(movie_path(@movie.id))
     end
@@ -25,8 +28,8 @@ class MoviesController < ApplicationController
   end
 
   def update
-    @Movie = Movie.find(params[:id])
-    if @Movie.update(title: params[:movie][:title],
+    @movie = Movie.find(params[:id])
+    if @movie.update(title: params[:movie][:title],
                      release_year: params[:movie][:release_year],
                      synopsis: params[:movie][:synopsis],
                      country_of_origin: params[:movie][:country_of_origin],
@@ -35,6 +38,11 @@ class MoviesController < ApplicationController
                      genre_id: params[:movie][:genre_id],
                      released: params[:movie][:released] == '1',
                      status: params[:movie][:status] == '1')
+
+      if params[:movie][:avatar]
+        @movie.avatar.attach(params[:movie][:avatar])
+      end
+
       flash[:notice] = 'Filme Editado com sucesso'
       return redirect_to(movie_path(params[:id]))
     end
@@ -55,5 +63,11 @@ class MoviesController < ApplicationController
     movie = Movie.find(params[:id])
     movie.published!
     redirect_to(draft_movies_path)
+  end
+
+  def remove_photo
+    movie = Movie.find(params[:id])
+    movie.avatar.purge
+    redirect_to(edit_movie_path(params[:id]))
   end
 end

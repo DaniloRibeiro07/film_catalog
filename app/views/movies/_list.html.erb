@@ -5,20 +5,30 @@
   <dl>
     <dt>Filmes não Lançados</dt>
       <%Movie.published.no_release.all.each do |movie|%>
+      <br>
         <dd>
+            <% if movie.avatar.attached? %>
+              <%= image_tag movie.avatar.variant(:thumb) %>
+            <% end %>
           <%= link_to movie.title, movie_path(movie.id) %>, lancamento:
           <%=movie.release_year%>
           <%= link_to 'Editar', edit_movie_path(movie.id) %>
         </dd> 
+        <br>
       <%end%>
-    <dt>Filmes Já lancados</dt>
+    <dt>Filmes Já lançados</dt>
       <%Movie.published.release.all.each do |movie|%>
+      <br>
         <dd>
+          <% if movie.avatar.attached? %>
+            <%= image_tag movie.avatar.variant(:thumb) %>
+          <% end %>
           <%= link_to movie.title, movie_path(movie.id) %>, lancamento:
           <%=movie.release_year%>
           <%= link_to 'Editar', edit_movie_path(movie.id) %>
         </dd> 
       <%end%>
+      <br>
   </dl>
 <%else%>
   <h3>Não há filmes publicados</h3>

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root to: 'home#welcome'
+  get 'movies/:id/remove_photo', to:  'movies#remove_photo', as: :remove_photo_movie
   get 'movies/draft', to: 'movies#draft', as: :draft_movies
   get 'movies/:id/publish', to: 'movies#publish', as: :publish_movie
   resources :directors, only: [:show, :new, :create, :edit, :update, :index]
