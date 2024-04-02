@@ -22,6 +22,14 @@
       Não
     <% end %>
   </dd>
+  <dd>
+    <strong>Rascunho ?</strong> 
+    <% if @movie.status == 'draft' %>
+      Sim
+    <%else%>
+      Não
+    <% end %>
+  </dd>
 </dl>
 
 <%= link_to 'Editar', edit_movie_path(@movie.id) %>

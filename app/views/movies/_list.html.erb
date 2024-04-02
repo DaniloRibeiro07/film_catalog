@@ -1,9 +1,10 @@
-<h2>Filmes Cadastrados</h2>
+<h2>Filmes Publicados</h2>
 <%= link_to 'Cadastra filme', new_movie_path %>
-
+<%= link_to 'Vê rascunhos de filme', draft_movies_path %>
+<% unless Movie.published.empty?%>
   <dl>
     <dt>Filmes não Lançados</dt>
-      <%Movie.no_release.all.each do |movie|%>
+      <%Movie.published.no_release.all.each do |movie|%>
         <dd>
           <%= link_to movie.title, movie_path(movie.id) %>, lancamento:
           <%=movie.release_year%>
@@ -11,12 +12,14 @@
         </dd> 
       <%end%>
     <dt>Filmes Já lancados</dt>
-      <%Movie.release.all.each do |movie|%>
+      <%Movie.published.release.all.each do |movie|%>
         <dd>
           <%= link_to movie.title, movie_path(movie.id) %>, lancamento:
           <%=movie.release_year%>
           <%= link_to 'Editar', edit_movie_path(movie.id) %>
         </dd> 
       <%end%>
-    
   </dl>
+<%else%>
+  <h3>Não há filmes publicados</h3>
+<%end%>

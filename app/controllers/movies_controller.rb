@@ -11,7 +11,8 @@ class MoviesController < ApplicationController
                        duration: params[:movie][:duration],
                        director_id: params[:movie][:director_id],
                        genre_id: params[:movie][:genre_id],
-                       released: params[:movie][:released])
+                       released: params[:movie][:released] == '1',
+                       status: params[:movie][:status] == '1')
     if @movie.save
       flash[:notice] = 'Filme Cadastrado com sucesso'
       return redirect_to(movie_path(@movie.id))
@@ -32,7 +33,8 @@ class MoviesController < ApplicationController
                      duration: params[:movie][:duration],
                      director_id: params[:movie][:director_id],
                      genre_id: params[:movie][:genre_id],
-                     released: params[:movie][:released] == '1')
+                     released: params[:movie][:released] == '1',
+                     status: params[:movie][:status] == '1')
       flash[:notice] = 'Filme Editado com sucesso'
       return redirect_to(movie_path(params[:id]))
     end
@@ -45,5 +47,13 @@ class MoviesController < ApplicationController
 
   def index
     render '_list'
+  end
+
+  def draft; end
+
+  def publish
+    movie = Movie.find(params[:id])
+    movie.published!
+    redirect_to(draft_movies_path)
   end
 end

@@ -23,6 +23,8 @@
   <%= f.label 'Já lançado ?'%>
   <%= f.check_box :released, {checked: movie.released_for_database}%>
   <br>
+  <%= f.label 'Publicar ?'%>
+  <%= f.check_box :status, {checked: movie.status_for_database}%>
   <br><br>
   <%= f.submit 'Salvar'%>
 <%end%>
