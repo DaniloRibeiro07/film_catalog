@@ -1,0 +1,17 @@
+<br>
+<% if flash[:notice]%>
+  <div style ="margin 10px 0px">
+    <h2><%= flash[:notice]%></h2> 
+  </div>
+<%end%>
+
+<h1>Cadastre um novo Gênero</h1>
+
+<%= form_with model: @genre do |f|%>
+  <%= f.label 'Nome do genero: '%>
+  <%= f.text_field :name%>
+  <%= f.submit 'Salvar'%>
+<%end%>
+
+
+<%= render partial:'list'%>

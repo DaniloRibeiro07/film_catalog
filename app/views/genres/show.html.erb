@@ -1,0 +1,17 @@
+<% if flash[:notice]%>
+  <div style ="margin 10px 0px">
+    <h2><%= flash[:notice]%></h2> 
+  </div>
+<%end%>
+
+<h1>Dados do genero: <%=@genre.name%></h1>
+<% if @movie_genre.empty? %>
+  <p>Não há filmes cadastrado neste gênero</p>
+<%else%>
+  <dt>Filmes cadastrados:</dt>
+  <%@movie_genre.each do |movie|%>
+  <dd><%= link_to movie.title, movie_path(movie.id) %></dd>
+  <%end%>
+  </dl>
+<% end %>
+<%= render partial:'list'%>

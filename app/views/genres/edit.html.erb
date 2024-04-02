@@ -1,0 +1,10 @@
+<h1>Editar Nome do Gênero</h1>
+
+<p><strong>Nome Atual:</strong> <%=@genre.name%> </p>
+<%= form_with model: @genre do |form| %>
+  <strong><%= form.label 'Novo Nome:'%></strong>
+  <%= form.text_field :name %>
+  <%= form.submit 'Atualizar Nome' %>
+<% end %>
+
+<%= render partial:'list'%>

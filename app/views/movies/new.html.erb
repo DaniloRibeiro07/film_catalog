@@ -1,0 +1,11 @@
+<br>
+<% if flash[:notice]%>
+  <div style ="margin 10px 0px">
+    <h2><%= flash[:notice]%></h2> 
+  </div>
+<%end%>
+
+<h1>Cadastre um novo Filme</h1>
+
+<%= render partial:'form', locals:{movie: @movie}%>
+<%= render partial:'list'%>

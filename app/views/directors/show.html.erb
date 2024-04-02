@@ -1,0 +1,28 @@
+<% if flash[:notice]%>
+  <div style ="margin 10px 0px">
+    <h2><%= flash[:notice]%></h2> 
+  </div>
+<%end%>
+
+<h1>Dados do/a diretor/a: <%=@director.name%></h1>
+<dl>
+<dt>Diretor <%=@director.name%></dt>
+  <dd><strong>Nome:</strong> <%=@director.name%></dd>
+  <dd><strong>Nacionalidade:</strong> <%=@director.nationality%></dd>
+  <dd><strong>Data de Nascimento:</strong> <%=@director.birthday%></dd>
+  <dd><strong>Gênero Favorito:</strong> <%=@director.genre.name%></dd>
+</dl>
+
+<%= link_to 'Editar', edit_director_path(@director.id) %>
+
+<% if @movie_director.empty? %>
+  <p>Não há filmes dirigido por <%=@director.name%></p>
+<%else%>
+  <dt>Filmes digidor por <%=@director.name%></dt>
+  <%@movie_director.each do |movie|%>
+  <dd><%= link_to movie.title, movie_path(movie.id) %></dd>
+  <%end%>
+  </dl>
+<% end %>
+
+<%= render partial:'list'%>

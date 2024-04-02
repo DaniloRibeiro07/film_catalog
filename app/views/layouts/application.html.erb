@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>FilmCatalog</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+    <h1>Catálogo de Filmes</h1>
+    <%= link_to 'Página Inicial', root_path%>
+    <%= link_to 'Listar Gêneros', genres_path%>
+    <%= link_to 'Listar Diretores', directors_path%>
+    <%= link_to 'Listar Filmes', movies_path%>
+    <%= yield %>
+  </body>
+</html>

@@ -1,0 +1,15 @@
+<%= form_with model: director do |f|%>
+  <%= f.label 'Nome do Diretor: '%>
+  <%= f.text_field :name%>
+  <br>
+  <%= f.label 'Nacionalidade: '%>
+  <%= f.text_field :nationality%>
+  <br>
+  <%= f.label 'Data de nascimento'%>
+  <%= f.date_field :birthday%>
+  <br>
+  <%= f.label 'Gênero Favorito'%>
+  <%= f.collection_select :genre_id, Genre.all, :id, :name %>
+  <br><br>
+  <%= f.submit 'Salvar'%>
+<%end%>
